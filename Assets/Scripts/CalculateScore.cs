@@ -45,7 +45,7 @@ public class CalculateScore : MonoSingleton<CalculateScore>
 			var value = BuildingRelationships.GetScore(building.Type, other.Type);
 			if (value > 0)
 			{
-				Popup.Pop("+ " + value, other.transform.position, Color.black);
+				Popup.Pop("+ " + value, other.transform.position, Color.green);
 			}
 			else if (value < 0)
 			{

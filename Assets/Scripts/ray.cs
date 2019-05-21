@@ -4,44 +4,44 @@ using UnityEngine;
 
 public class ray : MonoBehaviour
 {
-
-    public Material m1;
     public RaycastHit HitInfo;
-
     public Transform target;
     public bool mv = true;
 
+    private Camera _currentCamera;
+    private Transform _target;
     private bool enterSquareSign = true;
     private string hittedObjectNameTemp = "";
     private GameObject hittedObject = null;
     private Color hittedObjectColor;
 
-    // Use this for initialization
-    void Start()
+    private void Awake()
     {
-       // target = HitInfo.collider.gameObject.transform;
+        _currentCamera = Camera.main;
+        _target = transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
         CheckBarrier();
-       // OnMouseUp();
+        DragCube();
+        if(Input.GetMouseButtonUp(0))
+        {
+            PutDownCube();
+        }
     }
-    void CheckBarrier()
+
+    private void CheckBarrier()
     {
 
         Ray ray1 = new Ray(this.transform.position, -this.transform.up);
-        Debug.DrawRay(ray1.origin, ray1.direction, Color.red);
-        //判断射线是否碰到物体，碰到物体打印碰撞到的物体的名字
-
 
         if (Physics.Raycast(ray1, out HitInfo))
         {
             if (enterSquareSign == true)
             {
                 hittedObjectColor = HitInfo.collider.gameObject.GetComponent<Renderer>().material.color;
-                if(HitInfo.collider.gameObject.tag == "road")
+                if (HitInfo.collider.gameObject.tag == "road")
                     HitInfo.collider.gameObject.GetComponent<Renderer>().material.color = Color.red;
                 else
                     HitInfo.collider.gameObject.GetComponent<Renderer>().material.color = Color.green;
@@ -51,6 +51,7 @@ public class ray : MonoBehaviour
             }
 
         }
+
         if (enterSquareSign == false && Physics.Raycast(ray1, out HitInfo))
         {
             if (hittedObjectNameTemp != HitInfo.collider.name)
@@ -61,44 +62,53 @@ public class ray : MonoBehaviour
 
             }
         }
+
         if (mv == false)
         {
             hittedObject.GetComponent<Renderer>().material.color = hittedObjectColor;
+
         }
-   
-
-
-
     }
-
-    public void OnMouseUp()
+    public void PutDownCube()
     {
         if (mv == true)
         {
-            this.transform.position
-            = new Vector3(HitInfo.collider.gameObject.transform.position.x,
+            this.transform.position = new Vector3(HitInfo.collider.gameObject.transform.position.x,
             HitInfo.collider.gameObject.transform.position.y + 0.5f,
             HitInfo.collider.gameObject.transform.position.z);
             // this.transform.position = HitInfo.collider.gameObject.transform.position;
-
-
-
             mv = false;
             if (HitInfo.collider.gameObject.tag == "road" || HitInfo.collider.gameObject.tag == "cube")
             {
-                //mv = false;
                 Destroy(this.gameObject);
-               
-
             }
             if (mv == false)
             {
                 hittedObject.GetComponent<Renderer>().material.color = hittedObjectColor;
             }
-
+            CalculateScore.Calculate(GetComponent<Building>());
         }
-
-		CalculateScore.Calculate(GetComponent<Building>());
     }
-   
+
+    private void DragCube()
+    {
+        if (mv == true)
+        {
+            Vector3 CO_Direction = _target.position - _currentCamera.transform.position;
+            float cPlane = Vector3.Dot(CO_Direction, _currentCamera.transform.forward);
+            Ray cameraRay = _currentCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(cameraRay, out hit, float.PositiveInfinity, ~LayerMask.GetMask("Cube")))
+            {
+                print(hit.collider.name);
+                _target.position = hit.point + Vector3.up * 0.5f;
+            }
+            else
+            {
+                _target.position = _currentCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
+            }
+            return;
+        }
+    }
+
 }
