@@ -77,28 +77,32 @@ public class ray : MonoBehaviour
         {
             this.transform.position
             = new Vector3(HitInfo.collider.gameObject.transform.position.x,
-            HitInfo.collider.gameObject.transform.position.y + 0.5f,
+            HitInfo.collider.gameObject.transform.position.y + 0.7f,
             HitInfo.collider.gameObject.transform.position.z);
             // this.transform.position = HitInfo.collider.gameObject.transform.position;
-
+            //HitInfo.collider.gameObject.tag = "road";
 
 
             mv = false;
-            if (HitInfo.collider.gameObject.tag == "road" || HitInfo.collider.gameObject.tag == "cube")
-            {
-                //mv = false;
-                Destroy(this.gameObject);
-               
-
-            }
+           
             if (mv == false)
             {
                 hittedObject.GetComponent<Renderer>().material.color = hittedObjectColor;
             }
 
+            
+        }
+        if (HitInfo.collider.gameObject.tag == "road")
+        {
+            //mv = false;
+            Destroy(this.gameObject);
+
+
         }
 
-		CalculateScore.Calculate(GetComponent<Building>());
+        CalculateScore.Calculate(GetComponent<Building>());
     }
-   
+
+  
+
 }

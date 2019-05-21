@@ -1780,7 +1780,9 @@ GameObject:
   - component: {fileID: 342480945}
   - component: {fileID: 342480949}
   - component: {fileID: 342480950}
+  - component: {fileID: 342480953}
   - component: {fileID: 342480951}
+  - component: {fileID: 342480952}
   m_Layer: 9
   m_Name: Cube (1)
   m_TagString: cube
@@ -1796,10 +1798,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 342480944}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &342480946
 MeshRenderer:
@@ -1904,6 +1906,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 2
   type: 0
+--- !u!54 &342480952
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342480944}
+  serializedVersion: 2
+  m_Mass: 1e+9
+  m_Drag: 0
+  m_AngularDrag: 1000000
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &342480953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342480944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101976b224cd55d4f8eff44365215be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &357899334
 GameObject:
   m_ObjectHideFlags: 0
@@ -4801,6 +4831,8 @@ GameObject:
   - component: {fileID: 1194318519}
   - component: {fileID: 1194318524}
   - component: {fileID: 1194318525}
+  - component: {fileID: 1194318527}
+  - component: {fileID: 1194318526}
   m_Layer: 9
   m_Name: Cube
   m_TagString: cube
@@ -4831,10 +4863,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194318518}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1194318521
 MeshRenderer:
@@ -4924,6 +4956,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 2
   type: 1
+--- !u!54 &1194318526
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194318518}
+  serializedVersion: 2
+  m_Mass: 1e+9
+  m_Drag: 0
+  m_AngularDrag: 1000000
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1194318527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194318518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101976b224cd55d4f8eff44365215be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1215358227
 GameObject:
   m_ObjectHideFlags: 0
@@ -5398,7 +5458,9 @@ GameObject:
   - component: {fileID: 1353040375}
   - component: {fileID: 1353040379}
   - component: {fileID: 1353040380}
+  - component: {fileID: 1353040383}
   - component: {fileID: 1353040381}
+  - component: {fileID: 1353040382}
   m_Layer: 9
   m_Name: Cube (2)
   m_TagString: cube
@@ -5414,10 +5476,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353040374}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1353040376
 MeshRenderer:
@@ -5522,6 +5584,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 2
   type: 2
+--- !u!54 &1353040382
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353040374}
+  serializedVersion: 2
+  m_Mass: 1e+9
+  m_Drag: 0
+  m_AngularDrag: 1000000
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1353040383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353040374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101976b224cd55d4f8eff44365215be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1400755853
 GameObject:
   m_ObjectHideFlags: 0
