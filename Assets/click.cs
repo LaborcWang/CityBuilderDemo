@@ -66,5 +66,10 @@ public class click : MonoBehaviour {
         //Vector3 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 0);
         //clone.transform.position = mousepos;
     }
-   
+
+	private void OnMouseUp()
+	{
+		
+	}
+
 }

@@ -645,7 +645,7 @@ PlayerSettings:
   facebookStatus: 1
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
-  apiCompatibilityLevel: 2
+  apiCompatibilityLevel: 6
   cloudProjectId: b49c8b75-a6a1-417d-b9a1-1a2b5141892e
   framebufferDepthMemorylessMode: 0
   projectName: City

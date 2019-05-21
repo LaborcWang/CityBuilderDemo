@@ -98,6 +98,7 @@ public class ray : MonoBehaviour
 
         }
 
+		CalculateScore.Calculate(GetComponent<Building>());
     }
    
 }
