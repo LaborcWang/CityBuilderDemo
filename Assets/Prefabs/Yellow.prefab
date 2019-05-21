@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 8976506284103943730}
   - component: {fileID: 8976506284103943731}
   - component: {fileID: 8976506284103943728}
-  - component: {fileID: 8976506284103943732}
   - component: {fileID: 8976506284103943735}
   - component: {fileID: 8976506284103943734}
+  - component: {fileID: -2085432776784342825}
   m_Layer: 9
-  m_Name: Cube (1)
+  m_Name: Yellow
   m_TagString: cube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,26 +89,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8976506284103943729}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.6, y: 0.5, z: 1.6}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8976506284103943732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8976506284103943729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9586968e87b7c04ba3cdb3e2c52ce4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  redcube: {fileID: 8976506284103943729}
-  ray1_object: {fileID: 0}
-  rayScript: {fileID: 8976506284103943735}
 --- !u!114 &8976506284103943735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb11a5cea177bb941a9614a2f9043eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m1: {fileID: 0}
   target: {fileID: 0}
   mv: 1
 --- !u!114 &8976506284103943734
@@ -138,3 +122,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 2
   type: 0
+--- !u!54 &-2085432776784342825
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976506284103943729}
+  serializedVersion: 2
+  m_Mass: 100000
+  m_Drag: 0
+  m_AngularDrag: 10000
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 9195678186799878403}
   - component: {fileID: 9195678186799878402}
   - component: {fileID: 9195678186799878413}
-  - component: {fileID: 9195678186799878401}
   - component: {fileID: 9195678186799878406}
   - component: {fileID: 9195678186799878407}
+  - component: {fileID: -5756570103140452374}
   m_Layer: 9
   m_Name: Blue
   m_TagString: cube
@@ -89,26 +89,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9195678186799878412}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.6, y: 0.5, z: 1.6}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9195678186799878401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9195678186799878412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9586968e87b7c04ba3cdb3e2c52ce4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  redcube: {fileID: 9195678186799878412}
-  ray1_object: {fileID: 0}
-  rayScript: {fileID: 9195678186799878406}
 --- !u!114 &9195678186799878406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb11a5cea177bb941a9614a2f9043eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m1: {fileID: 0}
   target: {fileID: 0}
   mv: 1
 --- !u!114 &9195678186799878407
@@ -138,3 +122,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 2
   type: 2
+--- !u!54 &-5756570103140452374
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9195678186799878412}
+  serializedVersion: 2
+  m_Mass: 10000
+  m_Drag: 0
+  m_AngularDrag: 10000
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

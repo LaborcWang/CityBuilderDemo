@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 7247867891517362249}
   - component: {fileID: 7247867891517362250}
   - component: {fileID: 7247867891517362251}
-  - component: {fileID: 7247867891517362244}
   - component: {fileID: 7247867891517362255}
   - component: {fileID: 7247867891517362254}
+  - component: {fileID: -4679505357032719289}
   m_Layer: 9
-  m_Name: Cube
+  m_Name: Red
   m_TagString: cube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,26 +89,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7247867891517362245}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.6, y: 0.5, z: 1.6}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7247867891517362244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7247867891517362245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9586968e87b7c04ba3cdb3e2c52ce4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  redcube: {fileID: 7247867891517362245}
-  ray1_object: {fileID: 7247867891517362255}
-  rayScript: {fileID: 7247867891517362255}
 --- !u!114 &7247867891517362255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb11a5cea177bb941a9614a2f9043eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m1: {fileID: 2100000, guid: 8e0d34037d49f684c9edac83ff22f482, type: 2}
   target: {fileID: 0}
   mv: 1
 --- !u!114 &7247867891517362254
@@ -138,3 +122,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 2
   type: 1
+--- !u!54 &-4679505357032719289
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7247867891517362245}
+  serializedVersion: 2
+  m_Mass: 100000
+  m_Drag: 0
+  m_AngularDrag: 10000
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

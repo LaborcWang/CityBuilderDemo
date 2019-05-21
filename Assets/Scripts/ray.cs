@@ -14,6 +14,7 @@ public class ray : MonoBehaviour
     private string hittedObjectNameTemp = "";
     private GameObject hittedObject = null;
     private Color hittedObjectColor;
+    private bool _alreadybuild = false;
 
     private void Awake()
     {
@@ -69,8 +70,18 @@ public class ray : MonoBehaviour
 
         }
     }
+
     public void PutDownCube()
     {
+        this.enabled = false;
+
+        if (_alreadybuild == true || HitInfo.collider == null)
+        {
+            Destroy(this.gameObject);
+            hittedObject.GetComponent<Renderer>().material.color = hittedObjectColor;
+            return;
+        }
+
         if (mv == true)
         {
             this.transform.position = new Vector3(HitInfo.collider.gameObject.transform.position.x,
@@ -78,14 +89,16 @@ public class ray : MonoBehaviour
             HitInfo.collider.gameObject.transform.position.z);
             // this.transform.position = HitInfo.collider.gameObject.transform.position;
             mv = false;
+            hittedObject.GetComponent<Renderer>().material.color = hittedObjectColor;
             if (HitInfo.collider.gameObject.tag == "road" || HitInfo.collider.gameObject.tag == "cube")
             {
                 Destroy(this.gameObject);
             }
-            if (mv == false)
-            {
-                hittedObject.GetComponent<Renderer>().material.color = hittedObjectColor;
-            }
+
+            this.transform.position
+            = new Vector3(HitInfo.collider.gameObject.transform.position.x,
+            HitInfo.collider.gameObject.transform.position.y + 0.7f,
+            HitInfo.collider.gameObject.transform.position.z);
             CalculateScore.Calculate(GetComponent<Building>());
         }
     }
@@ -109,6 +122,14 @@ public class ray : MonoBehaviour
             }
             return;
         }
-    }
+     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        _alreadybuild = true;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        _alreadybuild = false;
+    }
 }
