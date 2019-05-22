@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityUtility;
 
-public enum CellType {Plane, Road, River};
-
 public class BaseCellPlane : MonoSingleton<BaseCellPlane>
 {
     private GameObject[] cellPlanes;
@@ -85,21 +83,28 @@ public class BaseCellPlane : MonoSingleton<BaseCellPlane>
         }
     }
 
-    public Vector3 ToWorldPosition(Vector2Int gridPosition)
+	public static BaseCell GetCell(Vector2Int gridPosition)
+	{
+		if (gridPosition.x < 0 || gridPosition.x >= Instance.baseCell.GetLength(0)
+		 || gridPosition.y < 0 || gridPosition.y >= Instance.baseCell.GetLength(1))
+			return null;
+
+		return Instance.baseCell[gridPosition.x, gridPosition.y];
+	}
+
+    public static Vector3 ToWorldPosition(Vector2Int gridPosition)
     {
-        Vector3 bottomLeftPosition = FindBottomLeftCell().transform.position;
-        Vector3 currentCellPosition = new Vector3(gridPosition.x * cellSize + bottomLeftPosition.x,
-                                        bottomLeftPosition.y, gridPosition.y * cellSize + bottomLeftPosition.z);
-
-
-        return currentCellPosition;
+		return Instance.baseCell[gridPosition.x, gridPosition.y].WorldPosition;
     }
 
-    public Vector2Int ToGridPosition(Vector3 worldPosition)
+    public static Vector2Int ToGridPosition(Vector3 worldPosition)
     {
-        Vector3 bottomLeftPosition = FindBottomLeftCell().transform.position;
-        int xGridPosition = (int)Mathf.Abs((worldPosition.x - bottomLeftPosition.x) / cellSize);
-        int yGridPosition = (int)Mathf.Abs((worldPosition.z - bottomLeftPosition.z) / cellSize);
+        Vector3 bottomLeftPosition = Instance.FindBottomLeftCell().transform.position;
+        int xGridPosition = (int)Mathf.Abs((worldPosition.x - bottomLeftPosition.x + cellSize * 0.5f) / cellSize);
+        int yGridPosition = (int)Mathf.Abs((worldPosition.z - bottomLeftPosition.z + cellSize * 0.5f) / cellSize);
+
+		Debug.DrawLine(worldPosition, GetCell(new Vector2Int(xGridPosition, yGridPosition)).WorldPosition);
+
         return new Vector2Int(xGridPosition,yGridPosition);
     }
 }

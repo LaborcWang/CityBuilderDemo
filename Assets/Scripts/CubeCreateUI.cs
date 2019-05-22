@@ -1,27 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class CubeCreateUI : MonoBehaviour,IPointerDownHandler, IPointerUpHandler
 {
-    public GameObject cloneCube;
-    private bool cloneSign = false;
-    private GameObject clone;
+	private GameObject _prefab;
+    private GameObject _buidlingInstance;
 
-    private void Update()
-    {
-    }
+	public void Initialize(GameObject prefab)
+	{
+		_prefab = prefab;
+		GetComponentInChildren<Text>().text = _prefab.GetComponent<Building>().Type.ToString();
+	}
 
-    public void OnPointerDown(PointerEventData eventData)
+	public void OnPointerDown(PointerEventData eventData)
     {
-        clone = Instantiate(cloneCube, cloneCube.transform.position, Quaternion.identity);
-        Vector3 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 0);
-        clone.transform.position = mousepos;
-    }
+        _buidlingInstance = Instantiate(_prefab, _prefab.transform.position, Quaternion.identity);
+        Vector3 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        _buidlingInstance.transform.position = mousepos;
+		_buidlingInstance.GetComponent<BuildingDragger>().enabled = true;
+	}
 
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        clone.GetComponent<ray>().PutDownCube();
+	public void OnPointerUp(PointerEventData eventData)
+	{
+		if (_buidlingInstance.GetComponent<BuildingDragger>().PutDownCube())
+		{
+			Destroy(this.gameObject);
+		}
     }
 }

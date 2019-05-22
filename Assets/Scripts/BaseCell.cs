@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CellType { Plane, Road, River };
+
 public class BaseCell : MonoBehaviour
 {
-    [SerializeField] Vector3 buildingOffset = Vector3.up * 0.5f;
-    [SerializeField] CellType cellType;
+	[SerializeField] bool canBuildBuilding;
+	[SerializeField] Vector3 buildingOffset = Vector3.up * 0.5f;
+	[SerializeField] CellType cellType;
     [SerializeField] Vector2Int position;
-    [SerializeField] Vector3 worldPosition;
     [SerializeField] Building building;
 
-    public CellType CellType => CellType;
-    public Vector2Int Position
+    public CellType CellType => cellType;
+	public Building Building => building;
+	public bool CanBuildBuilding => canBuildBuilding;
+
+	public Vector2Int Position
     {
         get => position;
         set => position = value;
@@ -19,11 +24,9 @@ public class BaseCell : MonoBehaviour
 
     public Vector3 WorldPosition
     {
-        get => worldPosition;
-        set => worldPosition = value;
+        get => transform.position;
+        set => transform.position = value;
     }
-
-    public Building Building => building;
 
     public void BuildBuilding(Building building)
     {

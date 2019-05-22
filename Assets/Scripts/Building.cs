@@ -6,7 +6,7 @@ public enum BuildingType
 {
 	Resident,
 	Industrial,
-	commercial
+	Commercial
 }
 
 

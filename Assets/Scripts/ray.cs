@@ -5,7 +5,6 @@ using UnityEngine;
 public class ray : MonoBehaviour
 {
     public RaycastHit HitInfo;
-    public Transform target;
     public bool mv = true;
 
     private Camera _currentCamera;
@@ -113,7 +112,6 @@ public class ray : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(cameraRay, out hit, float.PositiveInfinity, ~LayerMask.GetMask("Cube")))
             {
-                print(hit.collider.name);
                 _target.position = hit.point + Vector3.up * 0.5f;
             }
             else

@@ -14,9 +14,11 @@ public class CalculateScore : MonoSingleton<CalculateScore>
     public static float Calculate(Building building)
 	{
 		float score = 0;
-		Vector3 position = building.transform.position;
-		List<Building> checkedList = new List<Building>();
+		Vector2Int position = BaseCellPlane.ToGridPosition(building.transform.position);
+		List<Component> checkedList = new List<Component>();
+
 		checkedList.Add(building);
+		checkedList.Add(BaseCellPlane.GetCell(position));
 
 		Instance.GetScores(position, building, 0, checkedList, ref score);
 		Instance.totalScore += score;
@@ -26,48 +28,84 @@ public class CalculateScore : MonoSingleton<CalculateScore>
 		return score;
 	}
 
-	void GetScores(Vector3 position, Building building, int range, List<Building> checkedList, ref float score)
+	void GetScores(Vector2Int position, Building building, int range, List<Component> checkedList, ref float score)
 	{
-		if (range > building.Range)
-			return;
-		
-		var colliders = Physics.OverlapBox(position, Vector3.one * gridCellSize * 0.5f);
-		foreach (var col in colliders)
+		var cell = BaseCellPlane.GetCell(position);
+		if (cell != null)
 		{
-			var other = col.GetComponent<Building>();
-			if (other == null)
-				continue;
+			float value = 0;
 
-			if (checkedList.Contains(other))
-				break;
+			if (cell.Building != null &&
+				!checkedList.Contains(cell.Building))
+			{
+				checkedList.Add(cell.Building);
+				if (CheckBuilding(building, cell.Building, out value))
+				{
+					PopMessage(value, cell.Building.transform.position);
+					score += value;
+				}
+			}
 
-			checkedList.Add(other);
-			var value = BuildingRelationships.GetScore(building.Type, other.Type);
-			if (value > 0)
+			if (!checkedList.Contains(cell))
 			{
-				Popup.Pop("+ " + value, other.transform.position, Color.green);
+				checkedList.Add(cell);
+				if (CheckCell(building, cell, out value))
+				{
+					PopMessage(value, cell.transform.position);
+					score += value;
+				}
 			}
-			else if (value < 0)
-			{
-				Popup.Pop("- " + -value, other.transform.position, Color.red);
-			}
-			score += value;
-			break;
 		}
 
 		range++;
+		if (range > building.Range)
+			return;
 
-		Vector3[] nextPositions =
+		Vector2Int[] nextPositions =
 		{
-			position + Vector3.right * gridCellSize,
-			position + Vector3.forward * gridCellSize,
-			position + Vector3.left * gridCellSize,
-			position + Vector3.back * gridCellSize
+			position + Vector2Int.right,
+			position + Vector2Int.up,
+			position + Vector2Int.left,
+			position + Vector2Int.down
 		};
 
 		foreach (var pos in nextPositions)
 		{
 			GetScores(pos, building, range, checkedList, ref score);
+		}
+	}
+
+	bool CheckBuilding(Building building, Building other, out float value)
+	{
+		value = 0;
+		if (building == null || other == null)
+			return false;
+		
+		value = BuildingRelationships.GetScoreBetweenBuildings(building.Type, other.Type);
+
+		return true;
+	}
+
+	bool CheckCell(Building building, BaseCell cell, out float value)
+	{
+		value = 0;
+		if (building == null || cell == null)
+			return false;
+
+		value = BuildingRelationships.GetScoreBetweenBuildingAndPlane(building.Type, cell.CellType);
+
+		return true;
+	}
+
+	void PopMessage(float value, Vector3 position)
+	{
+		if (value > 0)
+		{
+			Popup.Pop("+ " + value, position, Color.green);
+		}
+		else if (value < 0)
+		{
+			Popup.Pop("- " + -value, position, Color.red);
 		}
 	}
 }
