@@ -6,6 +6,7 @@ TagManager:
   tags:
   - road
   - cube
+  - Cell
   layers:
   - Default
   - TransparentFX

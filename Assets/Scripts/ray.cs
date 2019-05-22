@@ -95,10 +95,10 @@ public class ray : MonoBehaviour
                 Destroy(this.gameObject);
             }
 
-            this.transform.position
-            = new Vector3(HitInfo.collider.gameObject.transform.position.x,
-            HitInfo.collider.gameObject.transform.position.y + 0.7f,
-            HitInfo.collider.gameObject.transform.position.z);
+            //this.transform.position
+            //= new Vector3(HitInfo.collider.gameObject.transform.position.x,
+            //HitInfo.collider.gameObject.transform.position.y + 0.7f,
+            //HitInfo.collider.gameObject.transform.position.z);
             CalculateScore.Calculate(GetComponent<Building>());
         }
     }
