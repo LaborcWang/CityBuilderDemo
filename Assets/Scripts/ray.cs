@@ -14,7 +14,7 @@ public class ray : MonoBehaviour
     private string hittedObjectNameTemp = "";
     private GameObject hittedObject = null;
     private Color hittedObjectColor;
-    private bool _alreadybuild = false;
+   
 
     private void Awake()
     {
@@ -75,7 +75,7 @@ public class ray : MonoBehaviour
     {
         this.enabled = false;
 
-        if (_alreadybuild == true || HitInfo.collider == null)
+        if ( HitInfo.collider == null)
         {
             Destroy(this.gameObject);
             hittedObject.GetComponent<Renderer>().material.color = hittedObjectColor;
@@ -90,7 +90,7 @@ public class ray : MonoBehaviour
             // this.transform.position = HitInfo.collider.gameObject.transform.position;
             mv = false;
             hittedObject.GetComponent<Renderer>().material.color = hittedObjectColor;
-            if (HitInfo.collider.gameObject.tag == "road" || HitInfo.collider.gameObject.tag == "cube")
+            if (HitInfo.collider.gameObject.tag == "road" )
             {
                 Destroy(this.gameObject);
             }
@@ -124,12 +124,5 @@ public class ray : MonoBehaviour
         }
      }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        _alreadybuild = true;
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        _alreadybuild = false;
-    }
+   
 }
