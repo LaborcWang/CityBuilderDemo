@@ -6,7 +6,10 @@ public class RandomBuilding : MonoBehaviour
 {
 	[SerializeField] GameObject[] _buildings;
 	[SerializeField] CubeCreateUI buildingButtonPrefab;
-	[SerializeField] int numberOfBuilding;
+	[SerializeField] int numberOfBuilding = 5;
+	[SerializeField] int refreshAfterUsed = 2;
+
+	int usedBuilding;
 
 	private void Start()
 	{
@@ -19,7 +22,23 @@ public class RandomBuilding : MonoBehaviour
 		{
 			var instance = Instantiate(buildingButtonPrefab.gameObject).GetComponent<CubeCreateUI>();
 			instance.transform.SetParent(this.transform);
+			instance.OnUsed += OnUsedHandler;
 			instance.Initialize(_buildings[Random.Range(0, _buildings.Length)]);
 		}
+	}
+
+	void OnUsedHandler()
+	{
+		usedBuilding++;
+		if (usedBuilding < refreshAfterUsed)
+			return;
+
+		usedBuilding = 0;
+		for (int i = 0; i < transform.childCount; i++)
+		{
+			Destroy(transform.GetChild(i).gameObject);
+		}
+
+		RandomlyFillBuildingList();
 	}
 }

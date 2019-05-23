@@ -8,8 +8,9 @@ public class CalculateScore : MonoSingleton<CalculateScore>
 {
 	[SerializeField] Text scoreText;
 	[SerializeField] float gridCellSize;
-
 	[SerializeField] float totalScore;
+
+	bool[] isCellTypeChecked = new bool[System.Enum.GetNames(typeof(CellType)).Length];
 
     public static float Calculate(Building building)
 	{
@@ -19,6 +20,11 @@ public class CalculateScore : MonoSingleton<CalculateScore>
 
 		checkedList.Add(building);
 		checkedList.Add(BaseCellPlane.GetCell(position));
+
+		for (int i = 0; i < Instance.isCellTypeChecked.Length; i++)
+		{
+			Instance.isCellTypeChecked[i] = false;
+		}
 
 		Instance.GetScores(position, building, 0, checkedList, ref score);
 		Instance.totalScore += score;
@@ -46,12 +52,13 @@ public class CalculateScore : MonoSingleton<CalculateScore>
 				}
 			}
 
-			if (!checkedList.Contains(cell))
+			if (!checkedList.Contains(cell) && !isCellTypeChecked[(int)cell.CellType])
 			{
 				checkedList.Add(cell);
+				isCellTypeChecked[(int)cell.CellType] = true;
 				if (CheckCell(building, cell, out value))
 				{
-					PopMessage(value, cell.transform.position);
+					PopMessage(value, building.transform.position);
 					score += value;
 				}
 			}
