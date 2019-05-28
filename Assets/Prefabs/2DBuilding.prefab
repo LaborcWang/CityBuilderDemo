@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 7931725237250613225}
   - component: {fileID: 1573129616035969711}
   - component: {fileID: 5849774228337117434}
+  - component: {fileID: -2109666279989184699}
   m_Layer: 0
   m_Name: 2DBuilding
   m_TagString: Untagged
@@ -180,6 +181,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 2
   type: 2
+--- !u!114 &-2109666279989184699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731247530509185604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5981a8e35e9142ccb1d7cc2c89f4c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highLightObj: {fileID: 5347871301875166663}
 --- !u!1 &5347871301875166663
 GameObject:
   m_ObjectHideFlags: 0

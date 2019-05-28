@@ -16,7 +16,7 @@ public class BaseCellPlane : MonoSingleton<BaseCellPlane>
         print(ToGridPosition( ToWorldPosition(baseCell[0, 1].Position)));
     }
 
-    private GameObject FindBottomLeftCell()
+    public GameObject FindBottomLeftCell()
     {
         GameObject tempGameObject = null;
         foreach(GameObject cellPlane in cellPlanes)
@@ -35,7 +35,7 @@ public class BaseCellPlane : MonoSingleton<BaseCellPlane>
         return tempGameObject;
     }
 
-    private GameObject FindTopRightCell()
+    public GameObject FindTopRightCell()
     {
         GameObject tempGameObject = null;
         foreach (GameObject cellPlane in cellPlanes)
@@ -103,8 +103,20 @@ public class BaseCellPlane : MonoSingleton<BaseCellPlane>
         int xGridPosition = (int)Mathf.Abs((worldPosition.x - bottomLeftPosition.x + cellSize * 0.5f) / cellSize);
         int yGridPosition = (int)Mathf.Abs((worldPosition.z - bottomLeftPosition.z + cellSize * 0.5f) / cellSize);
 
-		Debug.DrawLine(worldPosition, GetCell(new Vector2Int(xGridPosition, yGridPosition)).WorldPosition);
+//		Debug.DrawLine(worldPosition, GetCell(new Vector2Int(xGridPosition, yGridPosition)).WorldPosition);
 
         return new Vector2Int(xGridPosition,yGridPosition);
+    }
+
+    ////////////////////////
+    /// 以下为添加内容
+    /// ////////////////////
+    public static GameObject getLeftBottomCell()
+    {
+        return Instance.FindBottomLeftCell();
+    }
+    public static GameObject getRightTopCell()
+    {
+        return Instance.FindTopRightCell();
     }
 }

@@ -34,7 +34,7 @@ public class CalculateScore : MonoSingleton<CalculateScore>
 		return score;
 	}
 
-	void GetScores(Vector2Int position, Building building, int range, List<Component> checkedList, ref float score)
+	void GetScores(Vector2Int position, Building building, int range, List<Component> checkedList, ref float score)// Position 是当前building所放置的位置，building是当前拖拽的building，
 	{
 		var cell = BaseCellPlane.GetCell(position);
 		if (cell != null)
